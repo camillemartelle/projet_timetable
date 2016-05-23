@@ -49,7 +49,11 @@ public class Groupe {
 	public ArrayList<Etudiant> getEtudiants() { // type etudiant?
 		return this.etudiants;
 	}
-
+	
+	public void addEtudiant(Etudiant student) {
+		etudiants.add(student);			
+		
+	}
 	/**
 	 * Returns id_groupe.
 	 * @return id_groupe 

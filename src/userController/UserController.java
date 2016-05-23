@@ -381,6 +381,28 @@ public class UserController implements IUserController
 	 			userDB.addGroupe(new Groupe(Integer.parseInt(courant.getChildText("groupId"))));
 	 		}
 	 		
+	 		int j = 0, k = 0;
+	 		ArrayList<Etudiant> listeEtud = new ArrayList<Etudiant>();
+	 		ArrayList<Groupe> listeGroupe = new ArrayList<Groupe>();
+	 		int nombreEtud = listeEtud.size();
+	 		int nombreGroupe= listeGroupe.size();
+	 		while(j<nombreEtud)
+	 		{
+	 			int current_idgroupe = listeEtud.get(j).getId_groupe();
+	 			if(current_idgroupe!=-1)
+	 			{
+	 				while (k<nombreGroupe)
+	 				{
+		 				if(listeGroupe.get(k).getId_groupe()==current_idgroupe) 
+		 				{
+		 				listeGroupe.get(k).addEtudiant(listeEtud.get(j));	
+		 				}
+	 				
+	 				}
+	 			}
+	 			j++;
+	 		}
+	 		
 	 			 		
 	         return true;
 	      }
