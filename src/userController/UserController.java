@@ -320,8 +320,30 @@ public class UserController implements IUserController
 
 	@Override
 	public String[] groupsToString() {
-		// TODO Auto-generated method stub
-		return null;
+		String[] infoGroupes= new String[200];
+		ArrayList<Groupe> listeGroupe = userDB.getGroupes();
+		
+		int nbGroupe = listeGroupe.size();		
+		int i = 0, j=0;
+		while(i<nbGroupe)
+		{
+			ArrayList<Etudiant> listeEtudiant = listeGroupe.get(i).getEtudiants();
+			int nbEtudiant = listeEtudiant.size();
+			infoGroupes[i]=Integer.toString(listeGroupe.get(i).getId_groupe());
+			//System.out.println(listeGroupe.get(2).getEtudiants().size());
+			while(j<nbEtudiant)
+			{
+				
+				infoGroupes[i] = infoGroupes[i] + " " + listeEtudiant.get(j).getNom() + " " + listeEtudiant.get(j).getPrenom();
+				j++;
+			}
+			i++;		
+		}
+		
+		
+		
+		
+		return infoGroupes;
 	}
 
 	@Override
@@ -388,11 +410,13 @@ public class UserController implements IUserController
 	 		int nombreGroupe= listeGroupe.size();
 	 		while(j<nombreEtud)
 	 		{
+	 			System.out.println("b1");
 	 			int current_idgroupe = listeEtud.get(j).getId_groupe();
 	 			if(current_idgroupe!=-1)
 	 			{
 	 				while (k<nombreGroupe)
 	 				{
+	 					System.out.println("b2");
 		 				if(listeGroupe.get(k).getId_groupe()==current_idgroupe) 
 		 				{
 		 				listeGroupe.get(k).addEtudiant(listeEtud.get(j));	
