@@ -36,11 +36,13 @@ public class Etudiant extends User {
 
 	/**
 	 * The constructor.
+	 * @param groupId 
 	 */
-	public Etudiant(String log, String nom, String prenom, String mdp, int last_id) {
+	public Etudiant(String log, String nom, String prenom, String mdp, int last_id, int groupId) {
 		// Start of user code constructor for Etudiant)
 		super(log, nom, prenom, mdp);
 		this.id_etud=last_id;
+		this.id_groupe=groupId;
 		// End of user code
 	}
 

@@ -330,13 +330,13 @@ public class UserController implements IUserController
 			ArrayList<Etudiant> listeEtudiant = listeGroupe.get(i).getEtudiants();
 			int nbEtudiant = listeEtudiant.size();
 			infoGroupes[i]=Integer.toString(listeGroupe.get(i).getId_groupe());
-			//System.out.println(listeGroupe.get(2).getEtudiants().size());
 			while(j<nbEtudiant)
 			{
 				
 				infoGroupes[i] = infoGroupes[i] + " " + listeEtudiant.get(j).getNom() + " " + listeEtudiant.get(j).getPrenom();
 				j++;
 			}
+			j=0;
 			i++;		
 		}
 		
@@ -366,7 +366,7 @@ public class UserController implements IUserController
 	 		while(i.hasNext()){
 	 			Element courant = (Element)i.next();
 	 			
-	 			userDB.addStudent(new Etudiant(courant.getChildText("login"), courant.getChildText("surname"), courant.getChildText("firstname"), courant.getChildText("pwd"), Integer.parseInt(courant.getChildText("studentId"))));
+	 			userDB.addStudent(new Etudiant(courant.getChildText("login"), courant.getChildText("surname"), courant.getChildText("firstname"), courant.getChildText("pwd"), Integer.parseInt(courant.getChildText("studentId")), Integer.parseInt(courant.getChildText("groupId"))));
 
 	 		}
 	 		
@@ -404,26 +404,29 @@ public class UserController implements IUserController
 	 		}
 	 		
 	 		int j = 0, k = 0;
-	 		ArrayList<Etudiant> listeEtud = new ArrayList<Etudiant>();
-	 		ArrayList<Groupe> listeGroupe = new ArrayList<Groupe>();
+	 		ArrayList<Etudiant> listeEtud = userDB.getStudents();
+	 		ArrayList<Groupe> listeGroupe = userDB.getGroupes();
 	 		int nombreEtud = listeEtud.size();
 	 		int nombreGroupe= listeGroupe.size();
-	 		while(j<nombreEtud)
+	 		while(j<nombreGroupe)
 	 		{
-	 			System.out.println("b1");
-	 			int current_idgroupe = listeEtud.get(j).getId_groupe();
+
+	 			int current_idgroupe = listeGroupe.get(j).getId_groupe();
+	 			Etudiant currentStudent = listeEtud.get(j);
+	 			
 	 			if(current_idgroupe!=-1)
 	 			{
-	 				while (k<nombreGroupe)
+	 				while (k<nombreEtud)
 	 				{
-	 					System.out.println("b2");
-		 				if(listeGroupe.get(k).getId_groupe()==current_idgroupe) 
+
+		 				if(listeEtud.get(k).getId_groupe() == current_idgroupe) 
 		 				{
-		 				listeGroupe.get(k).addEtudiant(listeEtud.get(j));	
+		 					listeGroupe.get(j).addEtudiant(listeEtud.get(k));	
 		 				}
-	 				
+	 				k++;
 	 				}
 	 			}
+	 			k=0;
 	 			j++;
 	 		}
 	 		
