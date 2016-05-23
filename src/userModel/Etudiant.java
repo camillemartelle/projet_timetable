@@ -18,12 +18,12 @@ public class Etudiant extends User {
 	/**
 	 * Description of the property id_etud.
 	 */
-	private int id_etud;
+	private int id_etud=-1;
 
 	/**
 	 * Description of the property id_groupe.
 	 */
-	private int id_groupe;
+	private int id_groupe=-1;
 
 	/**
 	 * Description of the property grouped.
@@ -40,7 +40,7 @@ public class Etudiant extends User {
 	public Etudiant(String log, String nom, String prenom, String mdp, int last_id) {
 		// Start of user code constructor for Etudiant)
 		super(log, nom, prenom, mdp);
-		this.id_etud=last_id++;
+		this.id_etud=last_id;
 		// End of user code
 	}
 

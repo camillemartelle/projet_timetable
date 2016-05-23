@@ -3,6 +3,7 @@
  *******************************************************************************/
 package userModel;
 
+import java.util.ArrayList;
 
 // Start of user code (user defined imports)
 
@@ -17,7 +18,7 @@ public class Groupe {
 	/**
 	 * Description of the property etudiants.
 	 */
-	public Etudiant etudiants;
+	public ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
 
 	/**
 	 * Description of the property id_groupe.
@@ -45,7 +46,7 @@ public class Groupe {
 	 * Returns etudiants.
 	 * @return etudiants 
 	 */
-	public Etudiant getEtudiants() { // type etudiant?
+	public ArrayList<Etudiant> getEtudiants() { // type etudiant?
 		return this.etudiants;
 	}
 

@@ -30,7 +30,7 @@ public class Professeur extends User {
 	public Professeur(String log, String nom, String prenom, String mdp, int last_id) {
 		// Start of user code constructor for Professeur)
 		super(log, nom, prenom, mdp);
-		this.id_prof=last_id++;
+		this.id_prof=last_id;
 		// End of user code
 	}
 

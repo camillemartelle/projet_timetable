@@ -1,5 +1,7 @@
 package userModel;
 
+import java.util.ArrayList;
+
 /**
  * 
  * Cette classe gére la base de données d'utilisateurs. Elle doit permettre de sauvegarder et charger les utilisateurs et les groupes à partir d'un fichier XML. 
@@ -21,7 +23,10 @@ public class UserDB {
 	 * 
 	 */
 	private String file;
-	
+	private ArrayList<Etudiant> students = new ArrayList<Etudiant>();
+	private ArrayList<Admin> admins = new ArrayList<Admin>();
+	private ArrayList<Professeur> teachers = new ArrayList<Professeur>();
+	private ArrayList<Groupe> groupes = new ArrayList<Groupe>();
 	/**
 	 * 
 	 * Constructeur de UserDB. 
@@ -35,6 +40,7 @@ public class UserDB {
 		//TODO Fonction à modifier
 		//super();
 		this.setFile(file);
+		
 	}
 	
 	/**
@@ -58,4 +64,42 @@ public class UserDB {
 	public void setFile(String file) {
 		this.file = file;
 	}
+
+	public ArrayList<Etudiant> getStudents() {
+		return students;
+	}
+
+	public void addStudent(Etudiant student) {
+		students.add(student);
+	}
+
+	public ArrayList<Professeur> getTeachers() {
+		return teachers;
+	}
+	
+	public void addTeacher(Professeur professeur) {
+		teachers.add(professeur);
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<Admin> getAdmins() {
+		return admins;
+	}
+	
+	public void addAdmin(Admin admin) {
+		// TODO Auto-generated method stub
+		admins.add(admin);
+		
+	}
+
+	public void addGroupe(Groupe groupe) {
+		groupes.add(groupe);
+		
+	}
+	
+	public ArrayList<Groupe> getGroupes(){
+		return groupes;
+	}
+
 }
