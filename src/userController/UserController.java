@@ -95,60 +95,42 @@ public class UserController implements IUserController
 
 	@Override
 	public String getUserClass(String userLogin, String userPwd) {
-		// TODO Auto-generated method stub
-		/*Element currentUsers = racine.getChild("Students");
 		
-		List listCurrent = currentUsers.getChildren("Student");
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		ArrayList<Professeur> listTeacher = userDB.getTeachers();
+		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		Iterator i = listCurrent.iterator();
-		int j=0;
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			if(courant.getChildText("login").equals(userLogin) && courant.getChildText("pwd").equals(userPwd))
-				return "Student";
+		//On evite de parcourir toute la liste d'étudiants pour trouver un prof ou un admin
+		
+		int i = 0;
+		while(i<listAdmin.size()){
+			if(listAdmin.get(i).getLogin().equals(userLogin) && listAdmin.get(i).getMdp().equals(userPwd))
+				return "Administrator";				
+		i++;
 		}
 		
-		currentUsers = racine.getChild("Teachers");
-		listCurrent = currentUsers.getChildren("Teacher");
-		
-		i = listCurrent.iterator();
-		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			if(courant.getChildText("login").equals(userLogin) && courant.getChildText("pwd").equals(userPwd))
-			return "Teacher";
+		i=0;
+		while(i<listTeacher.size()){
+			if(listTeacher.get(i).getLogin().equals(userLogin) && listTeacher.get(i).getMdp().equals(userPwd))
+				return "Teacher";				
+		i++;
 		}
 		
-		currentUsers = racine.getChild("Administrators");
-		listCurrent = currentUsers.getChildren("Administrator");
+		i=0;
+		while(i<listStudent.size()){
+			if(listStudent.get(i).getLogin().equals(userLogin) && listStudent.get(i).getMdp().equals(userPwd))
+				return "Student";				
+		i++;
+		}
 		
-		i = listCurrent.iterator();
-		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			if(courant.getChildText("login").equals(userLogin) && courant.getChildText("pwd").equals(userPwd))
-			return "Administrator";
-		}*/
-		
+				
 		return "";
+		
 	}
 
 	@Override
 	public int getStudentGroup(String studentLogin) {
-		// TODO Auto-generated method stub
-										
-				/*Element students = racine.getChild("Students");
-				
-				List listStudent = students.getChildren("Student");
-				
-				Iterator i = listStudent.iterator();
-				
-				while(i.hasNext()){
-					Element courant = (Element)i.next();
-					if(courant.getChildText("login").equals(studentLogin))		
-						return Integer.parseInt(courant.getChildText("groupId"));			
-					
-				}*/
+		
 																
 				return -1;
 	}
@@ -158,11 +140,7 @@ public class UserController implements IUserController
 	public boolean addAdmin(String adminLogin, String newAdminlogin, int adminID, String firstname, String surname,
 			String pwd) {
 		
-		
-		
-		
-		
-		
+				
 		
 		return false;
 	}
