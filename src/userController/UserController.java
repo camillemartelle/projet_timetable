@@ -208,76 +208,78 @@ public class UserController implements IUserController
 	@Override
 	public String[] usersToString() {
 		
-		/*String[] usersData = new String[2000];
+		String[] usersData = new String[2000];
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		ArrayList<Professeur> listTeacher = userDB.getTeachers();
+		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		Element currentUsers = racine.getChild("Students");
+		//i pour parcourir tableau et j pour parcourir listes
+		int i = 0, j = 0;
 		
-		List listCurrent = currentUsers.getChildren("Student");
-		
-		Iterator i = listCurrent.iterator();
-		int j=0;
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			usersData[j++] = courant.getChildText("login") + " " + courant.getChildText("firstname") + " " + courant.getChildText("surname") + " " + courant.getChildText("pwd") + " " + courant.getChildText("studentId") + " " + courant.getChildText("groupId");
+		while(j < listStudent.size())
+		{
+			usersData[i] = listStudent.get(j).getLogin() + " " + listStudent.get(j).getNom() + " " + listStudent.get(j).getPrenom() + " Id etudiant : " + listStudent.get(j).getId_etud() +" Groupe : " + listStudent.get(j).getId_groupe();
+			i++;
+			j++;
 		}
 		
-		currentUsers = racine.getChild("Teachers");
-		listCurrent = currentUsers.getChildren("Teacher");
+		j=0;
 		
-		i = listCurrent.iterator();
-		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			usersData[j++] = courant.getChildText("login") + " " + courant.getChildText("firstname") + " " + courant.getChildText("surname") + " " + courant.getChildText("pwd") + " " + courant.getChildText("teacherId");
+		while(j < listTeacher.size()){
+			usersData[i] = listTeacher.get(j).getLogin() + " " + listTeacher.get(j).getNom() + " " + listTeacher.get(j).getPrenom() + " Id prof : " + listTeacher.get(j).getId_prof();
+			i++;
+			j++;			
 		}
 		
-		currentUsers = racine.getChild("Administrators");
-		listCurrent = currentUsers.getChildren("Administrator");
-		
-		i = listCurrent.iterator();
-		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			usersData[j++] = courant.getChildText("login") + " " + courant.getChildText("firstname") + " " + courant.getChildText("surname") + " " + courant.getChildText("pwd") + " " + courant.getChildText("adminId");
+		j=0;
+ 		
+		while(j < listAdmin.size()){
+			usersData[i] = listAdmin.get(j).getLogin() + " " + listAdmin.get(j).getNom() + " " + listAdmin.get(j).getPrenom() + " Id admin : " + listAdmin.get(j).getId_admin();
+			i++;
+			j++;			
 		}
 		
-		return usersData;*/
-		return null;
+				
+		
+		
+		
+		return usersData;
 	}
 
 	@Override
 	public String[] usersLoginToString() {
-		//ajouter conditions pour taille tableau
-		/*String[] usersLogin = this.studentsLoginToString();
+		
+		String[] userLogins = new String[2000];
+		
+		//on recupère les logins des étudiants
+		userLogins = this.studentsLoginToString();
+		
+		//On charge les listes administrateurs et professeurs
+		ArrayList<Professeur> listTeacher = userDB.getTeachers();
+		ArrayList<Admin> listAdmin = userDB.getAdmins();
+		
+		//On recupère le nombre d'éléments du tableau pour avoir l'index à utiliser
+		int j=0, k = 0;
+		for(Object o : userLogins)
+			if(o != null) j++;
 		
 		
-		Element usersTeacher = racine.getChild("Teachers");
-		Element usersAdmin = racine.getChild("Administrators");
-		
-		List listUserTeacher = usersTeacher.getChildren("Teacher");
-		List listUserAdmin = usersAdmin.getChildren("Administrator");
-		
-		Iterator i = listUserTeacher.iterator();
-		
-		int j=0;
-		for (String o : usersLogin)
-			if (o!=null) j++;
-		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			usersLogin[j++] = courant.getChildText("login"); 
+		//On récupère les logins des profs et admins qu'on rajoute à ceux presents dans le tableau
+		while(listTeacher.size() > k ){
+			userLogins[j] = listTeacher.get(k++).getLogin();
+			j++;
 		}
 		
-		i = listUserAdmin.iterator();
+		k = 0;
 		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			usersLogin[j++] = courant.getChildText("login");
+		while(listAdmin.size() > k ){
+			userLogins[j] = listAdmin.get(k++).getLogin();
+			j++;
 		}
 		
 		
-		return usersLogin;*/
-		return null;
+		return userLogins;
+		
 	}
 
 	@Override

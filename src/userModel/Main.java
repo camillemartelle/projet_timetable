@@ -31,7 +31,7 @@ public class Main {
 		UC.addStudent("su","BS",2001,"Buffy", "Summers",  "stake");
 		UC.addStudent("su","NL",2002,"Nicolas", "Lepetit",  "prout");
 		//System.out.println(UC.groupsIdToString()[1]);
-		System.out.println(UC.studentsLoginToString()[5]);
+		System.out.println(UC.usersToString()[9]);
 		UC.saveDB();
 	}
 }
