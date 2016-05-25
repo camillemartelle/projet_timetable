@@ -123,7 +123,38 @@ public class UserController implements IUserController
 		return "";
 		
 	}
+	
+	//fonction permettant de savoir si un utilisateur est un admin à partir de son login
+	private boolean isAdmin(String userLogin){
+		ArrayList<Admin> listAdmin = userDB.getAdmins();
+		int i = 0;
+		while(i < listAdmin.size()){
+			if(listAdmin.get(i++).getLogin().equals(userLogin))
+				return true;
+		}
+		return false;
+	}
 
+	private boolean isTeacher(String userLogin){
+		ArrayList<Professeur> listTeacher = userDB.getTeachers();
+		int i = 0;
+		while(i < listTeacher.size()){
+			if(listTeacher.get(i++).getLogin().equals(userLogin))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean isStudent(String userLogin){
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		int i = 0;
+		while(i < listStudent.size()){
+			if(listStudent.get(i++).getLogin().equals(userLogin))
+				return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public int getStudentGroup(String studentLogin) {
 		
@@ -147,23 +178,44 @@ public class UserController implements IUserController
 	public boolean addAdmin(String adminLogin, String newAdminlogin, int adminID, String firstname, String surname,
 			String pwd) {
 		
-				
+		//si adminLogin n'est pas un admin ou si newAdminlogin existe deja
+		if(!isAdmin(adminLogin) || isAdmin(newAdminlogin))
+			return false;
 		
-		return false;
+		userDB.getAdmins().add(new Admin(newAdminlogin, surname, firstname, pwd, adminID));
+						
+		
+		return true;
 	}
 
 	@Override
 	public boolean addTeacher(String adminLogin, String newteacherLogin, int teacherID, String firstname,
 			String surname, String pwd) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		
+		if(!isAdmin(adminLogin) || isTeacher(newteacherLogin))
+			return false;
+		
+		userDB.getTeachers().add(new Professeur(newteacherLogin, surname, firstname, pwd, teacherID));
+						
+		
+		return true;
+		
 	}
 
 	@Override
 	public boolean addStudent(String adminLogin, String newStudentLogin, int studentID, String firstname,
 			String surname, String pwd) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		if(!isAdmin(adminLogin) || isAdmin(newStudentLogin))
+			return false;
+		
+		userDB.getStudents().add(new Etudiant(newStudentLogin, surname, firstname, pwd, studentID, -1));
+						
+		
+		return true;
+		
+		
 	}
 
 	@Override
