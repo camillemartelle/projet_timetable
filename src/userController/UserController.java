@@ -127,8 +127,19 @@ public class UserController implements IUserController
 	@Override
 	public int getStudentGroup(String studentLogin) {
 		
-																
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		
+		int i = 0;
+		
+		while(i < listStudent.size()){
+			if(listStudent.get(i).getLogin().equals(studentLogin))
+				return listStudent.get(i).getId_groupe();
+			i++;
+		}
+		
+		
 				return -1;
+				
 	}
 	
 
