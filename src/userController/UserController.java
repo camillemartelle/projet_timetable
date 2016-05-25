@@ -54,44 +54,40 @@ public class UserController implements IUserController
 
 	@Override
 	public String getUserName(String userLogin) {
-		// TODO Auto-generated method stub
 		
-		/*Element currentUsers = racine.getChild("Students");
 		
-		List listCurrent = currentUsers.getChildren("Student");
 		
-		Iterator i = listCurrent.iterator();
-		int j=0;
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			if(courant.getChildText("login").equals(userLogin))
-				return courant.getChildText("firstname") + " " + courant.getChildText("surname");
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		ArrayList<Professeur> listTeacher = userDB.getTeachers();
+		ArrayList<Admin> listAdmin = userDB.getAdmins();
+		
+		//On evite de parcourir toute la liste d'étudiants pour trouver un prof ou un admin
+		
+		int i = 0;
+		while(i<listAdmin.size()){
+			if(listAdmin.get(i).getLogin().equals(userLogin))
+				return listAdmin.get(i).getNom() + " " + listAdmin.get(i).getPrenom();				
+		i++;
 		}
 		
-		currentUsers = racine.getChild("Teachers");
-		listCurrent = currentUsers.getChildren("Teacher");
-		
-		i = listCurrent.iterator();
-		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			if(courant.getChildText("login").equals(userLogin))
-			return courant.getChildText("firstname") + " " + courant.getChildText("surname");
+		i=0;
+		while(i<listTeacher.size()){
+			if(listTeacher.get(i).getLogin().equals(userLogin))
+				return listTeacher.get(i).getNom() + " " + listTeacher.get(i).getPrenom();				
+		i++;
 		}
 		
-		currentUsers = racine.getChild("Administrators");
-		listCurrent = currentUsers.getChildren("Administrator");
+		i=0;
+		while(i<listStudent.size()){
+			if(listStudent.get(i).getLogin().equals(userLogin))
+				return listStudent.get(i).getNom() + " " + listStudent.get(i).getPrenom();				
+		i++;
+		}
 		
-		i = listCurrent.iterator();
-		
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			if(courant.getChildText("login").equals(userLogin))
-			return courant.getChildText("firstname") + " " + courant.getChildText("surname");
-		}*/
-		
+				
 		return null;
-	}
+		
+		}
 
 	@Override
 	public String getUserClass(String userLogin, String userPwd) {
