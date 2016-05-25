@@ -282,25 +282,18 @@ public class UserController implements IUserController
 
 	@Override
 	public String[] studentsLoginToString() {
-		//ajouter conditions pour taille tableau
-		/*String[] studentsLogin = new String[2000];
 		
-		Element students = racine.getChild("Students");
-		
-		List listStudent = students.getChildren("Student");
-		
-		Iterator i = listStudent.iterator();
-		int j=0;
-		while(i.hasNext()){
-			Element courant = (Element)i.next();
-			studentsLogin[j++]= courant.getChildText("login");
+		String[] logins = new String[2000];
+		int j = 0;
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+				
+		while(listStudent.size() > j ){
+			logins[j] = listStudent.get(j).getLogin();
+			j++;
 		}
+			
+		return logins;
 		
-		
-		//System.out.print(listGroupId.toString());
-		
-		return studentsLogin;*/
-		return null;
 	}
 
 	@Override
