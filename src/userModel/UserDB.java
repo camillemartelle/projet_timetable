@@ -101,5 +101,17 @@ public class UserDB {
 	public ArrayList<Groupe> getGroupes(){
 		return groupes;
 	}
+	
+	public void removeStudent(int index){
+		students.remove(index);
+	}
+	
+	public void removeAdmin(int index){
+		admins.remove(index);
+	}
+	
+	public void removeTeacher(int index){
+		teachers.remove(index);
+	}
 
 }

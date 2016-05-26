@@ -182,7 +182,7 @@ public class UserController implements IUserController
 		if(!isAdmin(adminLogin) || isAdmin(newAdminlogin))
 			return false;
 		
-		userDB.getAdmins().add(new Admin(newAdminlogin, surname, firstname, pwd, adminID));
+		userDB.addAdmin(new Admin(newAdminlogin, surname, firstname, pwd, adminID));
 						
 		
 		return true;
@@ -196,7 +196,7 @@ public class UserController implements IUserController
 		if(!isAdmin(adminLogin) || isTeacher(newteacherLogin))
 			return false;
 		
-		userDB.getTeachers().add(new Professeur(newteacherLogin, surname, firstname, pwd, teacherID));
+		userDB.addTeacher(new Professeur(newteacherLogin, surname, firstname, pwd, teacherID));
 						
 		
 		return true;
@@ -210,7 +210,7 @@ public class UserController implements IUserController
 		if(!isAdmin(adminLogin) || isAdmin(newStudentLogin))
 			return false;
 		
-		userDB.getStudents().add(new Etudiant(newStudentLogin, surname, firstname, pwd, studentID, -1));
+		userDB.addStudent(new Etudiant(newStudentLogin, surname, firstname, pwd, studentID, -1));
 						
 		
 		return true;
@@ -220,7 +220,64 @@ public class UserController implements IUserController
 
 	@Override
 	public boolean removeUser(String adminLogin, String userLogin) {
-		// TODO Auto-generated method stub
+		
+		if(!isAdmin(adminLogin))
+			return false;
+		
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		ArrayList<Professeur> listTeacher = userDB.getTeachers();
+		ArrayList<Admin> listAdmin = userDB.getAdmins();
+		
+		if(isAdmin(userLogin)){
+			int i = 0;
+			while(i<listAdmin.size()){
+				if(userLogin.equals(listAdmin.get(i).getLogin())){
+					userDB.removeAdmin(i);
+					return true;
+				}
+				i++;
+			}
+			
+		}
+		
+		if(isTeacher(userLogin)){
+			int i = 0;
+			while(i<listTeacher.size()){
+				if(userLogin.equals(listTeacher.get(i).getLogin())){
+					userDB.removeTeacher(i);
+					return true;
+				}
+				i++;
+			}
+			
+		}
+		
+		if(isStudent(userLogin)){
+			int i = 0;
+			while(i<listStudent.size()){
+				
+				if(userLogin.equals(listStudent.get(i).getLogin())){
+					
+					ArrayList<Groupe> listGroup = userDB.getGroupes();
+					int j =0;
+					//le numero de groupe ne correspond pas à son index dans la liste
+					while(j<listGroup.size()){
+						if(listGroup.get(j).getId_groupe() == listStudent.get(i).getId_groupe())
+							listGroup.get(j).removeEtudiant(listStudent.get(i));			
+						j++;
+					}
+					userDB.removeStudent(i);
+					
+					return true;
+				}
+				i++;
+			}
+			
+		}
+		
+		
+		
+		
 		return false;
 	}
 

@@ -54,6 +54,10 @@ public class Groupe {
 		etudiants.add(student);			
 		
 	}
+	
+	public void removeEtudiant(Etudiant student){
+		etudiants.remove(student);
+	}
 	/**
 	 * Returns id_groupe.
 	 * @return id_groupe 
