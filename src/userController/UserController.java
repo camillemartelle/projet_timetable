@@ -179,7 +179,7 @@ public class UserController implements IUserController
 			String pwd) {
 		
 		//si adminLogin n'est pas un admin ou si newAdminlogin existe deja
-		if(!isAdmin(adminLogin) || isAdmin(newAdminlogin))
+		if(!isAdmin(adminLogin) || isAdmin(newAdminlogin) || isTeacher(newAdminlogin) || isStudent(newAdminlogin))
 			return false;
 		
 		userDB.addAdmin(new Admin(newAdminlogin, surname, firstname, pwd, adminID));
@@ -193,7 +193,7 @@ public class UserController implements IUserController
 			String surname, String pwd) {
 		
 		
-		if(!isAdmin(adminLogin) || isTeacher(newteacherLogin))
+		if(!isAdmin(adminLogin) || isAdmin(newteacherLogin) || isTeacher(newteacherLogin) || isStudent(newteacherLogin))
 			return false;
 		
 		userDB.addTeacher(new Professeur(newteacherLogin, surname, firstname, pwd, teacherID));
@@ -207,7 +207,7 @@ public class UserController implements IUserController
 	public boolean addStudent(String adminLogin, String newStudentLogin, int studentID, String firstname,
 			String surname, String pwd) {
 		
-		if(!isAdmin(adminLogin) || isAdmin(newStudentLogin))
+		if(!isAdmin(adminLogin) || isAdmin(newStudentLogin) || isTeacher(newStudentLogin) || isStudent(newStudentLogin))
 			return false;
 		
 		userDB.addStudent(new Etudiant(newStudentLogin, surname, firstname, pwd, studentID, -1));
