@@ -283,20 +283,102 @@ public class UserController implements IUserController
 
 	@Override
 	public boolean addGroup(String adminLogin, int groupId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		if(!isAdmin(adminLogin))
+			return false;
+		
+		ArrayList<Groupe> listGroupe = userDB.getGroupes();
+		int i =0;
+		while(i<listGroupe.size()){
+			if(listGroupe.get(i).getId_groupe()==groupId)
+				return false;
+			i++;
+		}
+		
+		userDB.addGroupe(new Groupe(groupId));
+		
+		return true;
 	}
 
 	@Override
 	public boolean removeGroup(String adminLogin, int groupId) {
-		// TODO Auto-generated method stub
+		if(!isAdmin(adminLogin))
+			return false;
+		
+		ArrayList<Groupe> listGroupe = userDB.getGroupes();
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		ArrayList<Etudiant> groupStudent=new ArrayList<Etudiant>();
+		
+		
+		
+		int i =0, j=0;
+		
+		while(i<listGroupe.size()){
+			if(listGroupe.get(i).getId_groupe()==groupId)
+				groupStudent = listGroupe.get(i).getEtudiants();
+			i++;
+		}
+		
+		i=0;
+		while(i<groupStudent.size()){
+			
+			while(j<listStudent.size()){
+				if(listStudent.get(j).equals(groupStudent.get(i)))
+					listStudent.get(j).setGroupe(-1);	
+				j++;
+			}
+			
+			i++;
+			j=0;
+		}
+		i=0;
+		while(i<listGroupe.size()){
+			if(listGroupe.get(i).getId_groupe()==groupId){
+				listGroupe.remove(i);
+				return true;
+			}
+			i++;
+		}
+		
+		
 		return false;
 	}
 
 	@Override
 	public boolean associateStudToGroup(String adminLogin, String studentLogin, int groupId) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		if(!isAdmin(adminLogin))
+			return false;
+		
+		ArrayList<Etudiant> listStudent = userDB.getStudents();
+		ArrayList<Groupe> listGroupe = userDB.getGroupes();
+		Etudiant student = null;
+		Groupe groupe=null;
+		int i = 0;
+		while(i<listStudent.size()){
+			if(listStudent.get(i).getLogin().equals(studentLogin))
+				student = listStudent.get(i);
+			i++;
+		}
+		if(student==null)
+			return false;
+		
+		i=0;
+		while(i<listGroupe.size()){
+			if(listGroupe.get(i).getId_groupe()==groupId)
+				groupe=listGroupe.get(i);
+			i++;
+		}
+		if (groupe==null)
+			return false;
+		
+		
+		student.setGroupe(groupId);
+		groupe.addEtudiant(student);
+		
+		
+		return true;
+		
 	}
 
 	@Override

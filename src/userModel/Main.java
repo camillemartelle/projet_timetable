@@ -28,14 +28,16 @@ public class Main {
 		UC.addAdmin("su","KR",0002,"Keanu", "Reeves",  "redpill");
 		UC.addTeacher("su","GS",1001,"Grand", "Schtroumpf",  "salsepareille");
 		UC.addTeacher("su","MF",1002,"Morgan", "Freeman",  "iknowall");
-		UC.addStudent("su","BS",2001,"Buffy", "Summers",  "stake");
+		UC.addStudent("su","BS",2001,"Buffy", "Summers",  "stak1e");
 		UC.addStudent("su","JK",2002,"Nicolas", "Lepetit",  "prout");
-		System.out.println(UC.groupsToString()[1]);
-		System.out.println(UC.removeUser("su", "BS"));
-		System.out.println(UC.removeUser("su", "BS"));
-		System.out.println(UC.removeUser("su", "BS"));
-
-		System.out.println(UC.groupsToString()[1]);
+		System.out.println(UC.groupsToString()[0]);
+		UC.associateStudToGroup("su", "NL", 1);
+		System.out.println(UC.getStudentGroup("NL"));
+		System.out.println(UC.groupsToString()[0]);
+		UC.removeGroup("su", 1);
+		UC.associateStudToGroup("su", "NL", 1);
+		System.out.println(UC.getStudentGroup("NL"));
+		System.out.println(UC.groupsToString()[0]);
 		UC.saveDB();
 	}
 }

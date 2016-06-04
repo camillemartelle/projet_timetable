@@ -79,8 +79,8 @@ public class Etudiant extends User {
 	 * Sets a value to attribute grouped. 
 	 * @param newGrouped 
 	 */
-	public void setGrouped(Boolean newGrouped) {
-		this.grouped = newGrouped;
+	public void setGroupe(int groupId) {
+		this.id_groupe=groupId;	
 	}
 
 }
