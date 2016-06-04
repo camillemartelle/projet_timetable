@@ -25,7 +25,7 @@ public class Main {
 		UserController UC=new UserController(file);
 		UC.loadDB();
 		System.out.println(UC.groupsToString()[1]);
-		System.out.println(UC.removeGroup("su", 2));
+		System.out.println(UC.removeGroup("su", 3));
 		System.out.println(UC.groupsToString()[1]);
 
 		UC.saveDB();
