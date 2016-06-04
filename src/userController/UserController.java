@@ -614,16 +614,157 @@ public class UserController implements IUserController
 
 	@Override
 	public boolean saveDB() {
-		// TODO Auto-generated method stub
-		/*try
-		   {
-		      
-		      XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-		      
-		      sortie.output(database, new FileOutputStream(userDB.getFile()));
-		      return true;
-		   }
-		   catch (java.io.IOException e){}*/
+		
+		    
+			ArrayList<Admin> listAdmin = userDB.getAdmins();
+			ArrayList<Etudiant> listStudent = userDB.getStudents();
+			ArrayList<Professeur> listTeacher = userDB.getTeachers();
+			ArrayList<Groupe> listGroup = userDB.getGroupes();
+			
+			
+            Element racine = new Element("UsersDB");
+	        	        
+	        
+	        int i = 0;
+	        Element groups = new Element("Groups");
+	        while(i<listGroup.size()){
+	        	Groupe currentGroup = listGroup.get(i);
+	        	Element group = new Element("Group");
+	        	
+	        	Element groupId = new Element("groupId");
+	        	groupId.setText(Integer.toString(currentGroup.getId_groupe()));
+	        	group.addContent(groupId);
+	        	
+	        	groups.addContent(group);
+	        	
+	        	i++;
+	        }
+	                
+	        
+	        racine.addContent(groups);
+	        
+	        i=0;
+	        Element students = new Element("Students");
+	        
+	        while(i<listStudent.size()){
+	        	Etudiant currentStudent = listStudent.get(i);
+	        	
+	        	Element student = new Element("Student");
+	        	
+	        	Element login = new Element("login");
+	        	login.setText(currentStudent.getLogin());
+	        	student.addContent(login);
+	        	
+	        	Element firstname = new Element("firstname");
+	        	firstname.setText(currentStudent.getPrenom());
+	        	student.addContent(firstname);
+	        	
+	        	Element surname = new Element("surname");
+	        	surname.setText(currentStudent.getNom());
+	        	student.addContent(surname);
+	        	
+	        	Element pwd = new Element("pwd");
+	        	pwd.setText(currentStudent.getMdp());
+	        	student.addContent(pwd);
+	        	
+	        	Element studentId = new Element("studentId");
+	        	studentId.setText(Integer.toString(currentStudent.getId_etud()));
+	        	student.addContent(studentId);
+	        	
+	        	Element groupId = new Element("groupId");
+	        	groupId.setText(Integer.toString(currentStudent.getId_groupe()));
+	        	student.addContent(groupId);
+	        	
+	        	students.addContent(student);
+	        	
+	        	i++;	        	
+	        	
+	        	
+	        	 
+	        }
+	        
+	        racine.addContent(students);
+	        i=0;
+	        Element teachers = new Element("Teachers");
+	        
+	        while(i<listTeacher.size()){
+	        	Professeur currentTeacher = listTeacher.get(i);
+	        	
+	        	Element teacher = new Element("Teacher");
+	        	
+	        	Element login = new Element("login");
+	        	login.setText(currentTeacher.getLogin());
+	        	teacher.addContent(login);
+	        	
+	        	Element firstname = new Element("firstname");
+	        	firstname.setText(currentTeacher.getPrenom());
+	        	teacher.addContent(firstname);
+	        	
+	        	Element surname = new Element("surname");
+	        	surname.setText(currentTeacher.getNom());
+	        	teacher.addContent(surname);
+	        	
+	        	Element pwd = new Element("pwd");
+	        	pwd.setText(currentTeacher.getMdp());
+	        	teacher.addContent(pwd);
+	        	
+	        	Element studentId = new Element("teacherId");
+	        	studentId.setText(Integer.toString(currentTeacher.getId_prof()));
+	        	teacher.addContent(studentId);
+	        	
+	        	teachers.addContent(teacher);
+	        	
+	        	i++;
+	        }
+	        	        
+	        racine.addContent(teachers);
+	        
+	        i=0;
+	        Element admins = new Element("Administrators");
+	        
+	        while(i<listAdmin.size()){
+	        	Admin currentAdmin = listAdmin.get(i);
+	        	
+	        	Element admin = new Element("Administrator");
+	        	
+	        	Element login = new Element("login");
+	        	login.setText(currentAdmin.getLogin());
+	        	admin.addContent(login);
+	        	
+	        	Element firstname = new Element("firstname");
+	        	firstname.setText(currentAdmin.getPrenom());
+	        	admin.addContent(firstname);
+	        	
+	        	Element surname = new Element("surname");
+	        	surname.setText(currentAdmin.getNom());
+	        	admin.addContent(surname);
+	        	
+	        	Element pwd = new Element("pwd");
+	        	pwd.setText(currentAdmin.getMdp());
+	        	admin.addContent(pwd);
+	        	
+	        	Element adminId = new Element("adminId");
+	        	adminId.setText(Integer.toString(currentAdmin.getId_admin()));
+	        	admin.addContent(adminId);
+	        	
+	        	admins.addContent(admin);
+	        	
+	        	i++;
+	        }
+	        
+	        racine.addContent(admins);
+	        
+	        try
+	        {
+	        	
+
+	           Document database = new Document(racine);
+	           
+	           XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+	           
+	           sortie.output(database, new FileOutputStream(userDB.getFile()));
+	        }
+	        catch (java.io.IOException e){}
 		return false;
 	}
 
