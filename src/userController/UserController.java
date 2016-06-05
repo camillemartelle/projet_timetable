@@ -20,15 +20,15 @@ import org.jdom2.output.XMLOutputter;
 
 /**
  * Cette classe est le contrôleur d'utilisateurs que vous devez implémenter. 
- * Elle contient un attribut correspondant à la base de données utilisateurs que vous allez créer.
+ * Elle contient un attribut correspondant �  la base de données utilisateurs que vous allez créer.
  * Elle contient toutes les fonctions de l'interface IUserController que vous devez implémenter.
  * 
- * @author Jose Mennesson (Mettre à jour)
- * @version 04/2016 (Mettre à jour)
+ * @author Jose Mennesson (Mettre �  jour)
+ * @version 04/2016 (Mettre �  jour)
  * 
  */
 
-//TODO Classe à modifier
+//TODO Classe �  modifier
 
 public class UserController implements IUserController
 {
@@ -124,6 +124,14 @@ public class UserController implements IUserController
 		
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 * @param userLogin
+	 * @return boolean
+	 * 		Permet de savoir si un utilisateur est un admin 
+	 */
 	//fonction permettant de savoir si un utilisateur est un admin � partir de son login
 	private boolean isAdmin(String userLogin){
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
@@ -134,7 +142,13 @@ public class UserController implements IUserController
 		}
 		return false;
 	}
-
+	/**
+	 * 
+	 * 
+	 * @param userLogin
+	 * @return boolean
+	 * 		Permet de savoir si un utilisateur est un pofesseur 
+	 */
 	private boolean isTeacher(String userLogin){
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		int i = 0;
@@ -144,7 +158,13 @@ public class UserController implements IUserController
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * 
+	 * @param userLogin
+	 * @return boolean
+	 * 		Permet de savoir si un utilisateur est un etudiant 
+	 */
 	private boolean isStudent(String userLogin){
 		ArrayList<Etudiant> listStudent = userDB.getStudents();
 		int i = 0;
@@ -779,4 +799,3 @@ public class UserController implements IUserController
 	
 
 }
-

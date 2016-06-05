@@ -29,22 +29,6 @@
       <groupId>-1</groupId>
     </Student>
     <Student>
-      <login>BS</login>
-      <firstname>Buffy</firstname>
-      <surname>Summers</surname>
-      <pwd>stake</pwd>
-      <studentId>2001</studentId>
-      <groupId>-1</groupId>
-    </Student>
-    <Student>
-      <login>BS</login>
-      <firstname>Buffy</firstname>
-      <surname>Summers</surname>
-      <pwd>stake</pwd>
-      <studentId>2001</studentId>
-      <groupId>-1</groupId>
-    </Student>
-    <Student>
       <login>AN</login>
       <firstname>AnnE</firstname>
       <surname>No</surname>
