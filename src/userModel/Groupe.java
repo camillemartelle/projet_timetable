@@ -49,12 +49,18 @@ public class Groupe {
 	public ArrayList<Etudiant> getEtudiants() { // type etudiant?
 		return this.etudiants;
 	}
-	
+	/**
+	 * Ajoute un etudiant
+	 * @param student
+	 */
 	public void addEtudiant(Etudiant student) {
 		etudiants.add(student);			
 		
 	}
-	
+	/**
+	 * Supprime un etudiant
+	 * @param student
+	 */
 	public void removeEtudiant(Etudiant student){
 		etudiants.remove(student);
 	}
