@@ -9,54 +9,50 @@ package userModel;
 // End of user code
 
 /**
- * Description of User.
  * 
  * @author Camille
  */
 public class User {
 	/**
-	 * Description of the property login.
+	 * Login de l'utilisateur
 	 */
 	private String login = new String();
 
 	/**
-	 * Description of the property prenom.
+	 * Prenom de l'utilisateur
 	 */
 	private String prenom = new String();
 
 	/**
-	 * Description of the property nom.
+	 * Nom de l'utilisateur
 	 */
 	private String nom = new String();
 
 	/**
-	 * Description of the property mdp.
+	 * Mot de passe de l'utilisateur
 	 */
 	private String mdp = new String();
 
-	// Start of user code (user defined attributes for User)
-
-	// End of user code
-
 	/**
-	 * The constructor.
+	 * Constructeur de User.
+	 * @param log
+	 * 		Login de l'utilisateur à créer 
+	 * @param nom
+	 * 		Nom de l'utilisateur à créer 
+	 * @param prenom
+	 * 		Prenom de l'utilisateur à créer 
+	 * @param mdp
+	 * 		Mot de passe de l'utilisateur à créer 
 	 */
 	public User(String log, String nom, String prenom, String mdp) {
-		// Start of user code constructor for User)
 		this.login=log;
 		this.nom=nom;
 		this.prenom=prenom;
 		this.mdp=mdp;
-		
-		//super();
-		// End of user code
 	}
 
-	// Start of user code (user defined methods for User)
-
-	// End of user code
 	/**
-	 * Returns login.
+	 * Retourne le login de l'utilisateur
 	 * @return login 
 	 */
 	public String getLogin() {
@@ -64,7 +60,7 @@ public class User {
 	}
 
 	/**
-	 * Returns prenom.
+	 * Retourne le prenom de l'utilisateur
 	 * @return prenom 
 	 */
 	public String getPrenom() {
@@ -72,7 +68,7 @@ public class User {
 	}
 
 	/**
-	 * Returns nom.
+	 * Retourne le nom de l'utilisateur
 	 * @return nom 
 	 */
 	public String getNom() {
@@ -80,7 +76,7 @@ public class User {
 	}
 
 	/**
-	 * Returns mdp.
+	 * Retourne le mot de passe de l'utilisateur
 	 * @return mdp 
 	 */
 	public String getMdp() {

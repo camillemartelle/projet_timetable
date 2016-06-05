@@ -5,40 +5,39 @@ package userModel;
 
 
 import userModel.User;
-// Start of user code (user defined imports)
 
-// End of user code
 
 /**
- * Description of Professeur.
  * 
  * @author Camille
  */
 public class Professeur extends User {
 	/**
-	 * Description of the property id_prof.
+	 * Identifiant du professeur.
 	 */
 	private int id_prof;
 	
-	// Start of user code (user defined attributes for Professeur)
-	
-	// End of user code
 	
 	/**
-	 * The constructor.
+	 * Constructeur de Professeur.
+	 * @param log
+	 * 		Login du professeur à créer 
+	 * @param nom
+	 * 		Nom du professeur à créer 
+	 * @param prenom
+	 * 		Prenom du professeur à créer 
+	 * @param mdp
+	 * 		Mot de passe du professeur à créer 
+	 * @param last_id
+	 * 		Identifiant du professeur à créer
 	 */
 	public Professeur(String log, String nom, String prenom, String mdp, int last_id) {
-		// Start of user code constructor for Professeur)
 		super(log, nom, prenom, mdp);
 		this.id_prof=last_id;
-		// End of user code
 	}
 
-	// Start of user code (user defined methods for Professeur)
-
-	// End of user code
 	/**
-	 * Returns id_prof.
+	 * Retourne l'identifiant du professeur.
 	 * @return id_prof 
 	 */
 

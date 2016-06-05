@@ -64,52 +64,94 @@ public class UserDB {
 	public void setFile(String file) {
 		this.file = file;
 	}
-
+	/**
+	 * 
+	 * @return students
+	 * 		Retourne la liste d'étudiants
+	 */
 	public ArrayList<Etudiant> getStudents() {
 		return students;
 	}
-
+	/**
+	 *
+	 * @param student 
+	 * 		Ajoute un étudiant à la liste d'étudiants
+	 */
 	public void addStudent(Etudiant student) {
 		students.add(student);
 	}
-
+	/**
+	 * 
+	 * @return teachers
+	 * 		Retourne la liste de professeurs
+	 */
 	public ArrayList<Professeur> getTeachers() {
 		return teachers;
 	}
-	
+	/**
+	 * 
+	 * @param professeur
+	 * 		Ajoute un professeur à la liste de professeurs
+	 */
 	public void addTeacher(Professeur professeur) {
 		teachers.add(professeur);
-		// TODO Auto-generated method stub
-		
-	}
 
+	}
+	/**
+	 * 
+	 * @return admins
+	 * 		Retourne la liste d'administrateurs
+	 */
 	public ArrayList<Admin> getAdmins() {
 		return admins;
 	}
-	
+	/**
+	 * 
+	 * @param admin
+	 * 		Ajoute un administrateur à la liste d'administrateurs
+	 */
 	public void addAdmin(Admin admin) {
-		// TODO Auto-generated method stub
 		admins.add(admin);
 		
 	}
-
+	/**
+	 * 
+	 * @param groupe
+	 * 		Ajoute un groupe à la liste de groupes
+	 */
 	public void addGroupe(Groupe groupe) {
 		groupes.add(groupe);
 		
 	}
-	
+	/**
+	 * 
+	 * @return groupes
+	 * 		Retourne la liste des groupes
+	 */
 	public ArrayList<Groupe> getGroupes(){
 		return groupes;
 	}
-	
+	/**
+	 * 
+	 * @param index
+	 * 		Supprime un étudiant de la liste via son index
+	 */
 	public void removeStudent(int index){
 		students.remove(index);
 	}
-	
+	/**
+	 * 
+	 * @param index
+	 * 		Supprime un administrateur de la liste via son index
+	 */
 	public void removeAdmin(int index){
 		admins.remove(index);
 	}
-	
+	/**
+	 * 
+	 * @param index
+	 * 		Supprime un professeur de la liste via son index
+	 */
 	public void removeTeacher(int index){
 		teachers.remove(index);
 	}

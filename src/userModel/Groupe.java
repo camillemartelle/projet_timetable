@@ -5,10 +5,6 @@ package userModel;
 
 import java.util.ArrayList;
 
-// Start of user code (user defined imports)
-
-// End of user code
-
 /**
  * Description of Groupe.
  * 
@@ -16,50 +12,48 @@ import java.util.ArrayList;
  */
 public class Groupe {
 	/**
-	 * Description of the property etudiants.
+	 * Liste contenant les étudiants du groupe
 	 */
-	public ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
+	private ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
 
 	/**
-	 * Description of the property id_groupe.
+	 * Identifiant du groupe.
 	 */
 	private int id_groupe;
 	
-	// Start of user code (user defined attributes for Groupe)
-
-	// End of user code
-	
 	/**
-	 * The constructor.
+	 * Constructeur de Groupe.
+	 * @param last_id
+	 * 		identifiant du groupe à créer
 	 */
 	public Groupe(int last_id) {
-		// Start of user code constructor for Groupe)
-		//super();
 		this.id_groupe=last_id;
-		// End of user code
 	}
 
-	// Start of user code (user defined methods for Groupe)
-
-	// End of user code
 	/**
-	 * Returns etudiants.
+	 * Retourne la liste d'étudiants du groupe
 	 * @return etudiants 
 	 */
 	public ArrayList<Etudiant> getEtudiants() { // type etudiant?
 		return this.etudiants;
 	}
-	
+	/**
+	 * Ajoute un etudiant à la liste d'étudiants du groupe
+	 * @param student
+	 */
 	public void addEtudiant(Etudiant student) {
 		etudiants.add(student);			
 		
 	}
-	
+	/**
+	 * Supprime un etudiant de la liste d'étudiants du groupe
+	 * @param student
+	 */
 	public void removeEtudiant(Etudiant student){
 		etudiants.remove(student);
 	}
 	/**
-	 * Returns id_groupe.
+	 * Retourne l'identifiant du groupe
 	 * @return id_groupe 
 	 */
 

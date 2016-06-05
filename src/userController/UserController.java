@@ -11,8 +11,6 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
@@ -23,18 +21,15 @@ import org.jdom2.output.XMLOutputter;
  * Elle contient un attribut correspondant √  la base de donn√©es utilisateurs que vous allez cr√©er.
  * Elle contient toutes les fonctions de l'interface IUserController que vous devez impl√©menter.
  * 
- * @author Jose Mennesson (Mettre √  jour)
- * @version 04/2016 (Mettre √  jour)
+ * @author Jessy Declerck - Camille Martelle
+ * @version 06/2016
  * 
  */
-
-//TODO Classe √  modifier
-
 public class UserController implements IUserController
 {
 	
 	/**
-	 * Contient une instance de base de donn√©es d'utilisateurs
+	 * Contient une instance de base de donn√É¬©es d'utilisateurs
 	 * 
 	 */
 	private UserDB userDB=null;
@@ -42,10 +37,10 @@ public class UserController implements IUserController
 
 	
 	/**
-	 * Constructeur de controleur d'utilisateurs cr√©ant la base de donn√©es d'utilisateurs
+	 * Constructeur de controleur d'utilisateurs cr√É¬©ant la base de donn√É¬©es d'utilisateurs
 	 * 
 	 * @param userfile
-	 * 		Fichier XML contenant la base de donn√©es d'utilisateurs
+	 * 		Fichier XML contenant la base de donn√É¬©es d'utilisateurs
 	 */
 	public UserController(String userfile){
 		UserDB userDB=new UserDB(userfile);
@@ -61,7 +56,7 @@ public class UserController implements IUserController
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		//On evite de parcourir toute la liste d'Ètudiants pour trouver un prof ou un admin
+		//On evite de parcourir toute la liste d'√©tudiants pour trouver un prof ou un admin
 		
 		int i = 0;
 		while(i<listAdmin.size()){
@@ -96,7 +91,7 @@ public class UserController implements IUserController
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		//On evite de parcourir toute la liste d'Ètudiants pour trouver un prof ou un admin
+		//On evite de parcourir toute la liste d'√©tudiants pour trouver un prof ou un admin
 		
 		int i = 0;
 		while(i<listAdmin.size()){
@@ -132,7 +127,9 @@ public class UserController implements IUserController
 	 * @return boolean
 	 * 		Permet de savoir si un utilisateur est un admin 
 	 */
+
 	//fonction permettant de savoir si un utilisateur est un admin ‡ partir de son login
+
 	private boolean isAdmin(String userLogin){
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		int i = 0;
@@ -181,7 +178,7 @@ public class UserController implements IUserController
 		ArrayList<Etudiant> listStudent = userDB.getStudents();
 		
 		int i = 0;
-		
+		//on recherche l'Ètudiant via son login
 		while(i < listStudent.size()){
 			if(listStudent.get(i).getLogin().equals(studentLogin))
 				return listStudent.get(i).getId_groupe();
@@ -212,7 +209,7 @@ public class UserController implements IUserController
 	public boolean addTeacher(String adminLogin, String newteacherLogin, int teacherID, String firstname,
 			String surname, String pwd) {
 		
-		
+		//on verifie si l'utilisateur existe dÈj‡
 		if(!isAdmin(adminLogin) || isAdmin(newteacherLogin) || isTeacher(newteacherLogin) || isStudent(newteacherLogin))
 			return false;
 		
@@ -226,7 +223,7 @@ public class UserController implements IUserController
 	@Override
 	public boolean addStudent(String adminLogin, String newStudentLogin, int studentID, String firstname,
 			String surname, String pwd) {
-		
+		//on verifie si l'utilisateur existe dÈj‡
 		if(!isAdmin(adminLogin) || isAdmin(newStudentLogin) || isTeacher(newStudentLogin) || isStudent(newStudentLogin))
 			return false;
 		
@@ -247,7 +244,7 @@ public class UserController implements IUserController
 		ArrayList<Etudiant> listStudent = userDB.getStudents();
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
-		
+		//on parcourt la liste d'administrateurs
 		if(isAdmin(userLogin)){
 			int i = 0;
 			while(i<listAdmin.size()){
@@ -259,7 +256,7 @@ public class UserController implements IUserController
 			}
 			
 		}
-		
+		//on parcourt la liste de professeurs
 		if(isTeacher(userLogin)){
 			int i = 0;
 			while(i<listTeacher.size()){
@@ -271,7 +268,7 @@ public class UserController implements IUserController
 			}
 			
 		}
-		
+		//on parcourt la liste d'Ètudiant, s'il existe on le supprime du groupe avant de le supprimer
 		if(isStudent(userLogin)){
 			int i = 0;
 			while(i<listStudent.size()){
@@ -280,7 +277,7 @@ public class UserController implements IUserController
 					
 					ArrayList<Groupe> listGroup = userDB.getGroupes();
 					int j =0;
-					//le numero de groupe ne correspond pas ‡ son index dans la liste
+					//le numero de groupe ne correspond pas √† son index dans la liste
 					while(j<listGroup.size()){
 						if(listGroup.get(j).getId_groupe() == listStudent.get(i).getId_groupe())
 							listGroup.get(j).removeEtudiant(listStudent.get(i));			
@@ -309,6 +306,7 @@ public class UserController implements IUserController
 		
 		ArrayList<Groupe> listGroupe = userDB.getGroupes();
 		int i =0;
+		//on vÈrifie si le groupe existe dÈj‡
 		while(i<listGroupe.size()){
 			if(listGroupe.get(i).getId_groupe()==groupId)
 				return false;
@@ -332,7 +330,7 @@ public class UserController implements IUserController
 		
 		
 		int i =0, j=0;
-		
+		//on recupËre les etudiants du groupe en question
 		while(i<listGroupe.size()){
 			if(listGroupe.get(i).getId_groupe()==groupId)
 				groupStudent = listGroupe.get(i).getEtudiants();
@@ -340,6 +338,7 @@ public class UserController implements IUserController
 		}
 		
 		i=0;
+		//on met le statut des Ètudiants ‡ "sans groupe" via la valeur -1
 		while(i<groupStudent.size()){
 			
 			while(j<listStudent.size()){
@@ -352,6 +351,7 @@ public class UserController implements IUserController
 			j=0;
 		}
 		i=0;
+		//on supprime le groupe en question
 		while(i<listGroupe.size()){
 			if(listGroupe.get(i).getId_groupe()==groupId){
 				listGroupe.remove(i);
@@ -380,6 +380,7 @@ public class UserController implements IUserController
 				student = listStudent.get(i);
 			i++;
 		}
+		//on vÈrifie si l'Ètudiant existe
 		if(student==null)
 			return false;
 		
@@ -389,6 +390,7 @@ public class UserController implements IUserController
 				groupe=listGroupe.get(i);
 			i++;
 		}
+		//on vÈrifie si le groupe existe
 		if (groupe==null)
 			return false;
 		
@@ -447,20 +449,20 @@ public class UserController implements IUserController
 		
 		String[] userLogins = new String[2000];
 		
-		//on recupËre les logins des Ètudiants
+		//on recup√®re les logins des √©tudiants
 		userLogins = this.studentsLoginToString();
 		
 		//On charge les listes administrateurs et professeurs
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		//On recupËre le nombre d'ÈlÈments du tableau pour avoir l'index ‡ utiliser
+		//On recup√®re le nombre d'√©l√©ments du tableau pour avoir l'index √† utiliser
 		int j=0, k = 0;
 		for(Object o : userLogins)
 			if(o != null) j++;
 		
 		
-		//On rÈcupËre les logins des profs et admins qu'on rajoute ‡ ceux presents dans le tableau
+		//On r√©cup√®re les logins des profs et admins qu'on rajoute √† ceux presents dans le tableau
 		while(listTeacher.size() > k ){
 			userLogins[j] = listTeacher.get(k++).getLogin();
 			j++;
@@ -539,16 +541,17 @@ public class UserController implements IUserController
 
 	@Override
 	public boolean loadDB() {
-		// TODO Auto-generated method stub
-		
+
 				
 	      try
 	      {
-	    	 SAXBuilder sxb = new SAXBuilder();
-	         Document database = sxb.build(new File(userDB.getFile()));
-	         Element racine = database.getRootElement();
-	         
-	         Element currentUsers = racine.getChild("Students");
+	    	SAXBuilder sxb = new SAXBuilder();
+	        Document database = sxb.build(new File(userDB.getFile()));
+	        Element racine = database.getRootElement();
+	        
+	        //on lit le document pour le charger en mÈmoire vive sous forme d'objets
+	        
+	        Element currentUsers = racine.getChild("Students");
 	 		
 	 		List listCurrent = currentUsers.getChildren("Student");
 	 		
@@ -641,7 +644,7 @@ public class UserController implements IUserController
 			ArrayList<Professeur> listTeacher = userDB.getTeachers();
 			ArrayList<Groupe> listGroup = userDB.getGroupes();
 			
-			
+			//on recrÈe l'architecture du document pour le rÈÈcrire
             Element racine = new Element("UsersDB");
 	        	        
 	        
@@ -776,8 +779,6 @@ public class UserController implements IUserController
 	        
 	        try
 	        {
-	        	
-
 	           Document database = new Document(racine);
 	           
 	           XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());

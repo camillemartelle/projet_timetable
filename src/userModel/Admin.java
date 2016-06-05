@@ -5,41 +5,36 @@ package userModel;
 
 
 import userModel.User;
-// Start of user code (user defined imports)
-
-// End of user code
 
 /**
- * Description of Admin.
  * 
  * @author Camille
  */
 public class Admin extends User {
 	/**
-	 * Description of the property id_admin.
+	 * Identifiant de l'administrateur
 	 */
 	private int id_admin;
 	
-	// Start of user code (user defined attributes for Admin)
-	
-	// End of user code
-	
 	/**
-	 * The constructor.
+	 * Constructeur de l'administrateur
+	 * @param log
+	 * 		Login de l'admin à créer 
+	 * @param nom
+	 * 		Nom de l'admin à créer 
+	 * @param prenom
+	 * 		Prenom de l'admin à créer 
+	 * @param mdp
+	 * 		Mot de passe de l'admin à créer 
+	 * @param last_id
+	 * 		Identifiant de l'admin à créer
 	 */
 	public Admin(String log, String nom, String prenom, String mdp, int last_id) {
-		// Start of user code constructor for Admin)
 		super(log, nom, prenom, mdp);
 		this.id_admin=last_id;
-		
-		// End of user code
 	}
-
-	// Start of user code (user defined methods for Admin)
-
-	// End of user code
 	/**
-	 * Returns id_admin.
+	 * Retourne l'identifiant de l'administrateur
 	 * @return id_admin 
 	 */
 

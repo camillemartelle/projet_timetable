@@ -16,41 +16,39 @@ import userModel.User;
  */
 public class Etudiant extends User {
 	/**
-	 * Description of the property id_etud.
+	 * Identifiant de l'étudiant.
 	 */
 	private int id_etud=-1;
 
 	/**
-	 * Description of the property id_groupe.
+	 * Identifiant du groupe de l'étudiant. -1 si l'étudiant n'a pas de groupe
 	 */
 	private int id_groupe=-1;
 
 	/**
-	 * Description of the property grouped.
-	 */
-	private Boolean grouped = Boolean.FALSE;
-
-	// Start of user code (user defined attributes for Etudiant)
-
-	// End of user code
-
-	/**
-	 * The constructor.
+	 * Constructeur
 	 * @param groupId 
+	 * 		Identifiant du groupe à créer
+	 * @param log
+	 * 		Login de l'étudiant à créer 
+	 * @param nom
+	 * 		Nom de l'étudiant à créer 
+	 * @param prenom
+	 * 		Prenom de l'étudiant à créer 
+	 * @param mdp
+	 * 		Mot de passe de l'étudiant à créer 
+	 * @param groupId 
+	 * 		Identifiant du groupe de l'étudiant. -1 s'il n'en a pas
 	 */
 	public Etudiant(String log, String nom, String prenom, String mdp, int last_id, int groupId) {
-		// Start of user code constructor for Etudiant)
 		super(log, nom, prenom, mdp);
 		this.id_etud=last_id;
 		this.id_groupe=groupId;
-		// End of user code
 	}
 
-	// Start of user code (user defined methods for Etudiant)
 
-	// End of user code
 	/**
-	 * Returns id_etud.
+	 * Retourne l'identifiant de l'étudiant
 	 * @return id_etud 
 	 */
 
@@ -59,7 +57,7 @@ public class Etudiant extends User {
 	}
 
 	/**
-	 * Returns id_groupe.
+	 * Retourne l'identifiant du groupe de l'étudiant
 	 * @return id_groupe 
 	 */
 
@@ -67,17 +65,11 @@ public class Etudiant extends User {
 		return this.id_groupe;
 	}
 
-	/**
-	 * Returns grouped.
-	 * @return grouped 
-	 */
-	public Boolean getGrouped() {
-		return this.grouped;
-	}
 
 	/**
-	 * Sets a value to attribute grouped. 
-	 * @param newGrouped 
+	 * Associe l'étudiant à un groupe 
+	 * @param groupId 
+	 * 		Identifiant du groupe auquel l'étudiant doit être associé
 	 */
 	public void setGroupe(int groupId) {
 		this.id_groupe=groupId;	
