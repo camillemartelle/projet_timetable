@@ -19,22 +19,22 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 /**
- * Cette classe est le contrôleur d'utilisateurs que vous devez implémenter. 
- * Elle contient un attribut correspondant à la base de données utilisateurs que vous allez créer.
- * Elle contient toutes les fonctions de l'interface IUserController que vous devez implémenter.
+ * Cette classe est le contrÃ´leur d'utilisateurs que vous devez implÃ©menter. 
+ * Elle contient un attribut correspondant Ã  la base de donnÃ©es utilisateurs que vous allez crÃ©er.
+ * Elle contient toutes les fonctions de l'interface IUserController que vous devez implÃ©menter.
  * 
- * @author Jose Mennesson (Mettre à jour)
- * @version 04/2016 (Mettre à jour)
+ * @author Jose Mennesson (Mettre Ã  jour)
+ * @version 04/2016 (Mettre Ã  jour)
  * 
  */
 
-//TODO Classe à modifier
+//TODO Classe Ã  modifier
 
 public class UserController implements IUserController
 {
 	
 	/**
-	 * Contient une instance de base de données d'utilisateurs
+	 * Contient une instance de base de donnÃ©es d'utilisateurs
 	 * 
 	 */
 	private UserDB userDB=null;
@@ -42,10 +42,10 @@ public class UserController implements IUserController
 
 	
 	/**
-	 * Constructeur de controleur d'utilisateurs créant la base de données d'utilisateurs
+	 * Constructeur de controleur d'utilisateurs crÃ©ant la base de donnÃ©es d'utilisateurs
 	 * 
 	 * @param userfile
-	 * 		Fichier XML contenant la base de données d'utilisateurs
+	 * 		Fichier XML contenant la base de donnÃ©es d'utilisateurs
 	 */
 	public UserController(String userfile){
 		UserDB userDB=new UserDB(userfile);
@@ -61,7 +61,7 @@ public class UserController implements IUserController
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		//On evite de parcourir toute la liste d'�tudiants pour trouver un prof ou un admin
+		//On evite de parcourir toute la liste d'étudiants pour trouver un prof ou un admin
 		
 		int i = 0;
 		while(i<listAdmin.size()){
@@ -96,7 +96,7 @@ public class UserController implements IUserController
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		//On evite de parcourir toute la liste d'�tudiants pour trouver un prof ou un admin
+		//On evite de parcourir toute la liste d'étudiants pour trouver un prof ou un admin
 		
 		int i = 0;
 		while(i<listAdmin.size()){
@@ -124,7 +124,15 @@ public class UserController implements IUserController
 		
 	}
 	
-	//fonction permettant de savoir si un utilisateur est un admin � partir de son login
+	
+	/**
+	 * 
+	 * 
+	 * @param userLogin
+	 * @return boolean
+	 * 		Permet de savoir si un utilisateur est un admin 
+	 */
+	//fonction permettant de savoir si un utilisateur est un admin à partir de son login
 	private boolean isAdmin(String userLogin){
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		int i = 0;
@@ -134,7 +142,13 @@ public class UserController implements IUserController
 		}
 		return false;
 	}
-
+	/**
+	 * 
+	 * 
+	 * @param userLogin
+	 * @return boolean
+	 * 		Permet de savoir si un utilisateur est un pofesseur 
+	 */
 	private boolean isTeacher(String userLogin){
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		int i = 0;
@@ -144,7 +158,13 @@ public class UserController implements IUserController
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * 
+	 * @param userLogin
+	 * @return boolean
+	 * 		Permet de savoir si un utilisateur est un etudiant 
+	 */
 	private boolean isStudent(String userLogin){
 		ArrayList<Etudiant> listStudent = userDB.getStudents();
 		int i = 0;
@@ -260,7 +280,7 @@ public class UserController implements IUserController
 					
 					ArrayList<Groupe> listGroup = userDB.getGroupes();
 					int j =0;
-					//le numero de groupe ne correspond pas � son index dans la liste
+					//le numero de groupe ne correspond pas à son index dans la liste
 					while(j<listGroup.size()){
 						if(listGroup.get(j).getId_groupe() == listStudent.get(i).getId_groupe())
 							listGroup.get(j).removeEtudiant(listStudent.get(i));			
@@ -427,20 +447,20 @@ public class UserController implements IUserController
 		
 		String[] userLogins = new String[2000];
 		
-		//on recup�re les logins des �tudiants
+		//on recupère les logins des étudiants
 		userLogins = this.studentsLoginToString();
 		
 		//On charge les listes administrateurs et professeurs
 		ArrayList<Professeur> listTeacher = userDB.getTeachers();
 		ArrayList<Admin> listAdmin = userDB.getAdmins();
 		
-		//On recup�re le nombre d'�l�ments du tableau pour avoir l'index � utiliser
+		//On recupère le nombre d'éléments du tableau pour avoir l'index à utiliser
 		int j=0, k = 0;
 		for(Object o : userLogins)
 			if(o != null) j++;
 		
 		
-		//On r�cup�re les logins des profs et admins qu'on rajoute � ceux presents dans le tableau
+		//On récupère les logins des profs et admins qu'on rajoute à ceux presents dans le tableau
 		while(listTeacher.size() > k ){
 			userLogins[j] = listTeacher.get(k++).getLogin();
 			j++;
